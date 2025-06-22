@@ -1,0 +1,21 @@
+name: Run Daily Task
+
+on:
+  schedule:
+    - cron: "30 21 * * *" # JST 06:30 = UTC 21:30
+
+jobs:
+  run-daily-task:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.10"
+
+      - name: Run script
+        run: python daily_task.py
